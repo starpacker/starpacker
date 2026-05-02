@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jiahe Ying | Peking University</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #fafafa;
+            --text: #1a1a1a;
+            --text-secondary: #555;
+            --accent: #8b1a1a;
+            --accent-light: #a52a2a;
+            --border: #e0e0e0;
+            --card-bg: #fff;
+            --tag-bg: #f0f0f0;
+            --nav-bg: rgba(250, 250, 250, 0.92);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--text);
+            background: var(--bg);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: var(--nav-bg);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            z-index: 100;
+            padding: 0 2rem;
+        }
+        nav .nav-inner {
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 56px;
+        }
+        nav .nav-name {
+            font-weight: 600;
+            font-size: 1.05rem;
+            color: var(--text);
+            text-decoration: none;
+        }
+        nav .nav-links { display: flex; gap: 1.8rem; }
+        nav .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.88rem;
+            font-weight: 450;
+            transition: color 0.2s;
+        }
+        nav .nav-links a:hover { color: var(--accent); }
+
+        /* Hamburger */
+        .hamburger { display: none; background: none; border: none; cursor: pointer; padding: 4px; }
+        .hamburger span { display: block; width: 20px; height: 2px; background: var(--text); margin: 5px 0; transition: 0.3s; }
+
+        /* Main */
+        main {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        section { padding: 3rem 0; }
+        section:first-of-type { padding-top: 5rem; }
+
+        /* Hero */
+        .hero {
+            padding-top: 7rem;
+            padding-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 2.5rem;
+        }
+        .hero-photo {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--border);
+            flex-shrink: 0;
+        }
+        .hero-text h1 {
+            font-family: 'Source Serif 4', Georgia, serif;
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+        }
+        .hero-text h1 span {
+            font-weight: 400;
+            color: var(--text-secondary);
+            font-size: 1.3rem;
+            margin-left: 0.5rem;
+        }
+        .hero-text .affiliation {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            margin-bottom: 0.8rem;
+        }
+        .hero-text .links {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .hero-text .links a {
+            color: var(--accent);
+            text-decoration: none;
+            font-size: 0.88rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            transition: opacity 0.2s;
+        }
+        .hero-text .links a:hover { opacity: 0.7; }
+        .hero-text .links a svg { width: 16px; height: 16px; }
+
+        /* About */
+        .about p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            max-width: 700px;
+        }
+        .interests {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        .interests span {
+            background: var(--tag-bg);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+            font-weight: 450;
+        }
+
+        /* Section headers */
+        h2 {
+            font-family: 'Source Serif 4', Georgia, serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--accent);
+            display: inline-block;
+        }
+        h2::after { content: ''; display: block; clear: both; }
+        .section-header { margin-bottom: 1.5rem; }
+
+        /* Publications */
+        .pub-item {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1.3rem 1.5rem;
+            margin-bottom: 1rem;
+            transition: box-shadow 0.2s;
+        }
+        .pub-item:hover { box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+        .pub-item .pub-venue {
+            font-size: 0.8rem;
+            color: var(--accent);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.3rem;
+        }
+        .pub-item .pub-title {
+            font-family: 'Source Serif 4', Georgia, serif;
+            font-size: 1.05rem;
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+            line-height: 1.4;
+        }
+        .pub-item .pub-authors {
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+        }
+        .pub-item .pub-authors .me { font-weight: 600; color: var(--text); }
+        .pub-item .pub-authors .equal { font-size: 0.75rem; vertical-align: super; color: var(--accent); }
+        .pub-item .pub-desc {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.7rem;
+            line-height: 1.6;
+        }
+        .pub-links { display: flex; gap: 0.6rem; flex-wrap: wrap; }
+        .pub-links a {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            padding: 0.25rem 0.65rem;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-size: 0.78rem;
+            font-weight: 500;
+            color: var(--text);
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+        .pub-links a:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+        .pub-links a svg { width: 13px; height: 13px; }
+
+        /* Projects */
+        .project-category {
+            font-size: 0.88rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.8rem;
+            margin-top: 1.8rem;
+        }
+        .project-category:first-of-type { margin-top: 0; }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.8rem;
+        }
+        .project-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1rem 1.2rem;
+            text-decoration: none;
+            color: var(--text);
+            transition: all 0.2s;
+        }
+        .project-card:hover {
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            border-color: var(--accent);
+        }
+        .project-card .proj-name {
+            font-weight: 600;
+            font-size: 0.92rem;
+            margin-bottom: 0.2rem;
+        }
+        .project-card .proj-desc {
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        /* Education */
+        .edu-item {
+            display: flex;
+            gap: 1.2rem;
+            align-items: flex-start;
+        }
+        .edu-logo {
+            width: 56px;
+            height: 56px;
+            border-radius: 8px;
+            background: var(--tag-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+        .edu-info h3 { font-size: 1rem; font-weight: 600; }
+        .edu-info p { font-size: 0.88rem; color: var(--text-secondary); }
+
+        /* Footer */
+        footer {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+        }
+
+        /* Responsive */
+        @media (max-width: 640px) {
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                gap: 1.2rem;
+            }
+            .hero-text .links { justify-content: center; }
+            .project-grid { grid-template-columns: 1fr; }
+            nav .nav-links {
+                display: none;
+                position: absolute;
+                top: 56px;
+                left: 0;
+                width: 100%;
+                background: var(--nav-bg);
+                backdrop-filter: blur(12px);
+                flex-direction: column;
+                padding: 1rem 2rem;
+                border-bottom: 1px solid var(--border);
+                gap: 1rem;
+            }
+            nav .nav-links.active { display: flex; }
+            .hamburger { display: block; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav>
+    <div class="nav-inner">
+        <a href="#" class="nav-name">Jiahe Ying</a>
+        <button class="hamburger" onclick="document.querySelector('.nav-links').classList.toggle('active')">
+            <span></span><span></span><span></span>
+        </button>
+        <div class="nav-links">
+            <a href="#about">About</a>
+            <a href="#publications">Publications</a>
+            <a href="#projects">Projects</a>
+            <a href="#education">Education</a>
+        </div>
+    </div>
+</nav>
+
+<main>
+
+<!-- Hero -->
+<section class="hero" id="about">
+    <img src="https://github.com/starpacker.png" alt="Jiahe Ying" class="hero-photo">
+    <div class="hero-text">
+        <h1>Jiahe Ying <span>(应嘉禾)</span></h1>
+        <p class="affiliation">Undergraduate Researcher, School of Physics, Peking University</p>
+        <div class="links">
+            <a href="mailto:2300012440@stu.pku.edu.cn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                Email
+            </a>
+            <a href="https://github.com/starpacker" target="_blank">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                GitHub
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- About -->
+<section class="about">
+    <p>
+        I am a junior undergraduate student at the <strong>School of Physics, Peking University</strong>.
+        My research lies at the intersection of artificial intelligence and natural sciences. I am passionate
+        about building AI systems that accelerate scientific discovery across disciplines.
+    </p>
+    <div class="interests">
+        <span>AI for Biology</span>
+        <span>Computational Imaging</span>
+        <span>Nanophotonics</span>
+        <span>Reinforcement Learning</span>
+        <span>LLM Agents</span>
+        <span>Inverse Problems</span>
+    </div>
+</section>
+
+<!-- Publications -->
+<section id="publications">
+    <div class="section-header"><h2>Publications</h2></div>
+
+    <div class="pub-item">
+        <div class="pub-venue">ICCP 2026 (Under Review)</div>
+        <div class="pub-title">Imaging-101: Benchmarking LLM Agents for Scientific Computational Imaging Problems</div>
+        <div class="pub-authors">
+            Siyi Chen<span class="equal">*</span>, <span class="me">Jiahe Ying</span><span class="equal">*</span>, Yixuan Jia, Yuxuan Gu, Enze Ye, Weimin Bai, Zhijun Zeng, Shaochi Ren, Binhong Gao, Yubing Li, Tianhan Zhang, He Sun
+        </div>
+        <div class="pub-desc">
+            A benchmark of 57 expert-verified computational imaging tasks spanning six scientific domains, with a standardized four-stage pipeline and three evaluation tracks probing distinct agent capabilities.
+        </div>
+        <div class="pub-links">
+            <a href="papers/Imaging-101.pdf" target="_blank">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+                PDF
+            </a>
+            <a href="https://openreview.net/forum?id=WGVeXTvxgM" target="_blank">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                OpenReview
+            </a>
+            <a href="https://github.com/starpacker/inverse_benchmark" target="_blank">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                Code
+            </a>
+        </div>
+    </div>
+
+    <div class="pub-item">
+        <div class="pub-venue">Acta Physica Sinica (物理学报), 2025</div>
+        <div class="pub-title">Si<sub>3</sub>N<sub>4</sub>光子晶体连续域准束缚态表征及调控</div>
+        <div class="pub-authors">
+            Yunhao Zhang<span class="equal">#</span>, Xiao He<span class="equal">#</span>, <span class="me">Jiahe Ying</span><span class="equal">#</span>, Donglin Liu, Guangyi Tao, Yuchen Dai, Zhibo Dang, Zheyu Fang
+        </div>
+        <div class="pub-desc">
+            Designed visible-light Si<sub>3</sub>N<sub>4</sub> photonic crystals and observed quasi-bound states in the continuum (q-BIC) via momentum-space characterization. Achieved lateral photon localization through band-nesting heterostructures with Q/V ratio of 6 &times; 10<sup>14</sup> cm<sup>-3</sup>.
+        </div>
+        <div class="pub-links">
+            <a href="papers/Si3N4_qBIC.pdf" target="_blank">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+                PDF
+            </a>
+            <a href="https://doi.org/10.7498/aps.74.20250757" target="_blank">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                DOI
+            </a>
+        </div>
+    </div>
+
+    <div class="pub-item">
+        <div class="pub-venue">Preprint</div>
+        <div class="pub-title">DICE: Discriminative Intervention for Counterfactual Evidence in Occluded Person Re-Identification</div>
+        <div class="pub-authors">
+            <span class="me">Jiahe Ying</span>, Xinglai Jin, Hua Gao
+        </div>
+        <div class="pub-desc">
+            A causal inference framework introducing Dynamic Attention Masking (DAM) to tackle occluded person Re-ID by generating counterfactual scenarios, achieving SOTA performance with zero inference overhead.
+        </div>
+        <div class="pub-links">
+            <a href="papers/DICE.pdf" target="_blank">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+                PDF
+            </a>
+        </div>
+    </div>
+
+    <p style="font-size: 0.82rem; color: var(--text-secondary); margin-top: 0.8rem;">
+        <span class="equal" style="font-size: 0.75rem; vertical-align: super; color: var(--accent);">*</span> Equal contribution &nbsp;&nbsp;
+        <span class="equal" style="font-size: 0.75rem; vertical-align: super; color: var(--accent);">#</span> Co-first author
+    </p>
+</section>
+
+<!-- Projects -->
+<section id="projects">
+    <div class="section-header"><h2>Projects</h2></div>
+
+    <div class="project-category">AI for Biology</div>
+    <div class="project-grid">
+        <a class="project-card" href="https://github.com/starpacker/TCRPPO" target="_blank">
+            <div class="proj-name">TCRPPO</div>
+            <div class="proj-desc">TCR CDR3&beta; sequence optimization via PPO-based reinforcement learning for enhanced binding affinity.</div>
+        </a>
+        <a class="project-card" href="https://github.com/starpacker/aidd-review" target="_blank">
+            <div class="proj-name">aidd-review</div>
+            <div class="proj-desc">Systematic analysis of failure modes in AI-driven drug discovery pipelines.</div>
+        </a>
+        <a class="project-card" href="https://github.com/starpacker/tFold_finetune" target="_blank">
+            <div class="proj-name">tFold_finetune</div>
+            <div class="proj-desc">Fine-tuning protein folding models for downstream structural prediction tasks.</div>
+        </a>
+    </div>
+
+    <div class="project-category">AI for Physics</div>
+    <div class="project-grid">
+        <a class="project-card" href="https://github.com/starpacker/inverse_benchmark" target="_blank">
+            <div class="proj-name">inverse_benchmark</div>
+            <div class="proj-desc">Imaging-101 benchmark suite: 200+ standardized computational imaging tasks across six scientific domains.</div>
+        </a>
+        <a class="project-card" href="https://github.com/starpacker/rydberg-rl-entanglement" target="_blank">
+            <div class="proj-name">rydberg-rl-entanglement</div>
+            <div class="proj-desc">High-fidelity entanglement preparation in Rydberg atom arrays via reinforcement learning.</div>
+        </a>
+        <a class="project-card" href="https://github.com/starpacker/plunge-dive" target="_blank">
+            <div class="proj-name">plunge-dive</div>
+            <div class="proj-desc">Analytical modeling of seabird plunge-diving: aerial descent, water-entry impact, and deceleration dynamics.</div>
+        </a>
+        <a class="project-card" href="https://github.com/starpacker/llm_for_electrodynamics" target="_blank">
+            <div class="proj-name">llm_for_electrodynamics</div>
+            <div class="proj-desc">Exploring LLM capabilities in solving classical electrodynamics problems.</div>
+        </a>
+    </div>
+
+    <div class="project-category">AI Agents & LLM Research</div>
+    <div class="project-grid">
+        <a class="project-card" href="https://github.com/starpacker/ATLAS-Autonomous-Theory-Learning-through-Adaptive-Search" target="_blank">
+            <div class="proj-name">ATLAS</div>
+            <div class="proj-desc">Autonomous Theory Learning through Adaptive Search &mdash; agents that learn and apply scientific theories.</div>
+        </a>
+        <a class="project-card" href="https://github.com/starpacker/AvalonToM" target="_blank">
+            <div class="proj-name">AvalonToM</div>
+            <div class="proj-desc">Evaluating LLM agents' Theory of Mind capabilities through the Avalon game framework.</div>
+        </a>
+        <a class="project-card" href="https://github.com/starpacker/CUPT" target="_blank">
+            <div class="proj-name">CUPT</div>
+            <div class="proj-desc">Research project in computational methods.</div>
+        </a>
+    </div>
+
+    <div class="project-category">Tools & Utilities</div>
+    <div class="project-grid">
+        <a class="project-card" href="https://github.com/starpacker/CrossingHunter" target="_blank">
+            <div class="proj-name">CrossingHunter</div>
+            <div class="proj-desc">High-performance curve intersection detection using adaptive bisection.</div>
+        </a>
+        <a class="project-card" href="https://github.com/starpacker/music_translator" target="_blank">
+            <div class="proj-name">music_translator</div>
+            <div class="proj-desc">CV-based optical music recognition: staff notation to numbered musical notation (简谱).</div>
+        </a>
+        <a class="project-card" href="https://github.com/starpacker/quant-trader" target="_blank">
+            <div class="proj-name">quant-trader</div>
+            <div class="proj-desc">Quantitative stock selection system for the Chinese A-share market.</div>
+        </a>
+    </div>
+</section>
+
+<!-- Education -->
+<section id="education">
+    <div class="section-header"><h2>Education</h2></div>
+    <div class="edu-item">
+        <div class="edu-logo">🎓</div>
+        <div class="edu-info">
+            <h3>Peking University (北京大学)</h3>
+            <p>B.S. in Physics, School of Physics &nbsp;|&nbsp; 2023 &ndash; Present</p>
+            <p>Research Focus: AI for Science (Biology, Physics & Computational Imaging)</p>
+        </div>
+    </div>
+</section>
+
+</main>
+
+<footer>
+    &copy; 2025 Jiahe Ying &nbsp;&middot;&nbsp; Built with care
+</footer>
+
+<!-- Smooth scroll -->
+<script>
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+        e.preventDefault();
+        const el = document.querySelector(a.getAttribute('href'));
+        if (el) {
+            el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            document.querySelector('.nav-links').classList.remove('active');
+        }
+    });
+});
+</script>
+
+</body>
+</html>

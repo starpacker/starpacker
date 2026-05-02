@@ -52,10 +52,24 @@ I am passionate about building AI systems that can accelerate scientific discove
 
 </td>
 </tr>
+<tr>
+<td width="30" align="center">📄</td>
+<td>
+
+**Si₃N₄光子晶体连续域准束缚态表征及调控**
+<br>Yunhao Zhang#, Xiao He#, **Jiahe Ying**#, Donglin Liu, Guangyi Tao, Yuchen Dai, Zhibo Dang, Zheyu Fang
+<br>*Acta Physica Sinica (物理学报), 2025, 74(18): 184204*
+<br>Designed visible-light Si₃N₄ photonic crystals and observed quasi-bound states in the continuum (q-BIC) via momentum-space characterization, achieving lateral photon localization with Q/V ~ 6 × 10¹⁴ cm⁻³.
+<br>[![Paper](https://img.shields.io/badge/PDF-Download-red?style=flat-square&logo=adobeacrobatreader)](https://github.com/starpacker/starpacker/raw/main/papers/Si3N4_qBIC.pdf) [![DOI](https://img.shields.io/badge/DOI-10.7498%2Faps.74.20250757-blue?style=flat-square)](https://doi.org/10.7498/aps.74.20250757)
+
+</td>
+</tr>
 </table>
 
-> *He Sun is an Assistant Professor at the National Biomedical Imaging Center, Peking University.*
+> \# Co-first author
+> <br>*He Sun is an Assistant Professor at the National Biomedical Imaging Center, Peking University.*
 > <br>*Hua Gao is an Associate Professor at the College of Zhijiang, Zhejiang University of Technology.*
+> <br>*Zheyu Fang is a Professor at the School of Physics, Peking University.*
 
 ---
 
